@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MicroserviceCall {
-    private static List<String> SERVERS_LIST = Arrays.asList("http://localhost:25000", "http://localhost:25000");
+    private static List<String> SERVERS_LIST = Arrays.asList("http://localhost:24000", "http://localhost:25000");
     private static int SERVER_INDEX = 0;
 
     public static String forward(String operation, String value, String lst) throws IOException {

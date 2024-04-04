@@ -3,6 +3,7 @@ import static spark.Spark.*;
 
 public class ProxyService {
     public static void main(String[] args) {
+        staticFiles.location("/public");
         port(getPort());
         get("linearSearch", (req,res) -> {
             String value = req.queryParams("value");

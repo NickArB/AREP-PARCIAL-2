@@ -21,7 +21,7 @@ public class MathServices{
                 lstInt.add(Integer.parseInt(s));
             }
             Integer ans = SearchAlgorithms.linearSearch(lstInt, Integer.parseInt(value));
-            return toJSON(lst, value, "linearSearch", ans); 
+            return toJSON(lst, value, "linearSearch", ans);
         });
         get("binarySearch", (req,res) -> {
             String value = req.queryParams("value");

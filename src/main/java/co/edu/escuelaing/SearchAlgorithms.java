@@ -18,10 +18,11 @@ public class SearchAlgorithms{
         int end = numbers.size() - 1;
         int middle = end / 2;
         
-        while(start != end){
-            System.out.println("" + start + ", " + end);
-            System.out.println(middle);
+        while(start <= end){
             if(numbers.get(middle) == element){
+                return middle;
+            }else if((end - start) == 1){
+                middle ++;
                 return middle;
             }
             if(numbers.get(middle) > element){
@@ -32,15 +33,12 @@ public class SearchAlgorithms{
             }
 
             middle = (end + start) / 2;
-            if(end - start == 1){
-                middle ++;
-            }
         }
         return -1;
     }
 
     public static void main(String[] args) {
-        List<Integer> lst = Arrays.asList(10,20,13,40,60);
+        List<Integer> lst = Arrays.asList(10,13,20,40,60);
         System.out.println(binarySearch(lst, 20));
     }
 }   
