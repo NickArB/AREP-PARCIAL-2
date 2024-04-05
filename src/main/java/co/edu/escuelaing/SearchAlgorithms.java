@@ -5,9 +5,9 @@ import java.util.List;
 
 public class SearchAlgorithms{
     public static Integer linearSearch(List<Integer> numbers, int element){
-        for(Integer i: numbers){
-            if(i == element){
-                return numbers.indexOf(i);
+        for(int i = 0; i < numbers.size(); i++){
+            if(numbers.get(i) == element){
+                return i;
             }
         }
         return -1;
@@ -39,6 +39,6 @@ public class SearchAlgorithms{
 
     public static void main(String[] args) {
         List<Integer> lst = Arrays.asList(10,13,20,40,60);
-        System.out.println(binarySearch(lst, 20));
+        System.out.println(linearSearch(lst, 60));
     }
 }   

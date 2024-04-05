@@ -19,7 +19,7 @@ Antes de ejecutar el servidor es necesario contar con los siguientes programas i
 1. JDK (Java Development Kit)
 2. MVN (Maven)
 
-### Instalación y Ejecución
+### Instalación y Ejecución (Localmente)
 
 A continuación se muestra el paso a paso de como instalar y ejecutar el proyecto
 
@@ -38,7 +38,7 @@ $ mvn clean
 ```
 $ mvn package
 ```
-4. Con los target asignados, ejecute el metodo main de la clase HTTPServer. Dependiendo de su IDE esta clase se puede ejecutar de varias formas, en caso de no tener un IDE se recomienda el uso del siguiente comando
+4. Con los target asignados, ejecute el metodo main de las clases ProxyService y MathServices. Dependiendo de su IDE esta clase se puede ejecutar de varias formas, en caso de no tener un IDE se recomienda el uso de los siguientes comandos
 ```
 $ java -cp .\target\AREP-PARCIAL-2-1.0-SNAPSHOT-jar-with-dependencies.jar co.edu.escuelaing.ProxyService
 $ java -cp .\target\AREP-PARCIAL-2-1.0-SNAPSHOT-jar-with-dependencies.jar co.edu.escuelaing.MathServices
@@ -76,7 +76,45 @@ Ahora probaremos que el algoritmo de RoundRobin cambiando el codigo para que se 
 ![Alt text](images/image-6.png)
 ![Alt text](images/image-7.png)
 
+### Instalación y Ejecución (En la nube - AWS)
 
+1. Clone este repositorio en tres instancias EC2.
+```
+$ git clone https://github.com/NickArB/AREP-PARCIAL-2.git
+```
+2. Existe una rama con cambios especializados para la nube, para ello dirijase a la rama `cloud` en todas las máquinas
+```
+$ git checkout cloud
+```
+3. Una vez se encuentra en dicha rama, asegurese de que no existan ejecutables previos o no deseados con maven.
+```
+$ mvn clean
+```
+3. Con el build previo descartado, compile y re asigne el build a target.
+```
+$ mvn package
+```
+4. Con los target asignados, ejecute el metodo main de la clase `ProxyService` en una instancia EC2.
+```
+$ java -cp .\target\parcial-2-1.0-SNAPSHOT-jar-with-dependencies.jar co.edu.escuelaing.ProxyService
+```
+5. Luego en las otras dos instancias independientes ejecute el método main de la clase `MathServices`
+```
+$ java -cp .\target\parcial-2-1.0-SNAPSHOT-jar-with-dependencies.jar co.edu.escuelaing.MathServices
+```
+6. Accediendo al DNS del proxy podemos obtener el servicio web del proyecto mediante la siguiente dirección
+```
+http://<DNS-Maquina-AWS>:26000/
+```
+- Pruebas de funcionalidad de MathServices a través del servicio de ProxyService.
+
+![alt text](images/image-8.png)
+
+- Para probar que la funcionalidad RoundRobin del proxy se apaga una de las dos instancias EC2 que soportan MathServices. En la consola del navegador podemos observar que el servidor nos arroja un error ya que no pudo establecer conexión demostrando así que esta funcionalidad existe.
+
+![alt text](images/image-9.png)
+
+Prubas más detalladas en la nube se pueden evidenciar en este [video de muestra](https://youtu.be/UBWGzXOxgIM)
 
 ## Construido con
 
