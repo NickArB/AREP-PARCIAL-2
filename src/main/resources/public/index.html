@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PARCIAL</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form>
+          <h1>Linear</h1>
+          <label>List :</label><br>
+          <input type="text" id="lst"><br><br>
+          <label>Value :</label><br>
+          <input type="text" id="number"><br><br>
+          <input type="button" value="Calculate" onclick="asincronousLinear(lst, number)">
+        </form>
+        <div id="resp1"></div>
+
+        <form>
+            <h1>Binary</h1>
+            <label>List :</label><br>
+            <input type="text" id="lst"><br><br>
+            <label>Value :</label><br>
+            <input type="text" id="number"><br><br>
+            <input type="button" value="Calculate" onclick="asincronousBinary(lst, number)">
+          </form>
+          <div id="resp2"></div>
+        
+
+        <script>
+            function asincronousLinear(lst, number){
+                let url = "/linearSearch?list=" + lst.value + "&value=" + number.value;
+
+                fetch(url, { method: 'GET' })
+                    .then(x => x.json())
+                    .then(y => {
+                        document.getElementById("resp1").innerHTML = "";
+                        document.getElementById("resp1").innerHTML = JSON.stringify(y);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            function asincronousBinary(lst, number){
+                let url = "/binarySearch?list=" + lst.value + "&value=" + number.value;
+
+                fetch(url, { method: 'GET' })
+                    .then(x => x.json())
+                    .then(y => {
+                        document.getElementById("resp2").innerHTML = "";
+                        document.getElementById("resp2").innerHTML = JSON.stringify(y);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            
+        </script>
+    </body>
+</html>
